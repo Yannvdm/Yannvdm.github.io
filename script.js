@@ -8,7 +8,17 @@ document.querySelectorAll('.pg-link').forEach(l => {
 });
 
 document.querySelectorAll('.ligne-acti').forEach(ligne => {
-  ligne.addEventListener('click', () => ligne.classList.toggle('ouvert'));
+  ligne.addEventListener('click', () => {
+    // On bascule l'état ouvert/fermé
+    const estOuvert = ligne.classList.toggle('ouvert');
+
+    // Si on vient d'ouvrir le bloc, on scrolle doucement vers lui
+    if (estOuvert) {
+      setTimeout(() => {
+        ligne.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300); // On attend un court instant que l'animation commence
+    }
+  });
 });
 
 const blocs = document.querySelectorAll('.bloc');
